@@ -4,6 +4,7 @@
 
 namespace Main {
 
+<<<<<<< HEAD
     open Microsoft.Quantum.Arithmetic;
 	open Microsoft.Quantum.Canon;
 	open Microsoft.Quantum.Intrinsic;
@@ -17,5 +18,13 @@ namespace Main {
     operation MessageTest (target: Qubit) : Unit {
         H(target);
         Message(BoolAsString(ResultAsBool(M(target))));
+=======
+    open Microsoft.Quantum.Canon;
+    open Microsoft.Quantum.Intrinsic;
+
+    operation MessageTest (target: Qubit) : Unit {
+        H(target);
+        Message(M(target));
+>>>>>>> cff04646efead3e4085addfe2d693874f86c48b7
     }
 }

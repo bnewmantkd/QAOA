@@ -2,7 +2,7 @@ using System;
 using System.Linq;
 using Microsoft.Quantum.Simulation.Core;
 using Microsoft.Quantum.Simulation.Simulators;
-using Quantum.QAOA;
+using QAOA;
 
 namespace Quantum.QAOA
 {
@@ -64,24 +64,24 @@ namespace Quantum.QAOA
                 var bestCost = 100.0 * penalty;
                 var bestItinerary = new bool[6];
                 var successNumber = 0;
-                for (int trial = 0; trial < 20; trial++)
-                {
-                    var result = QAOA_santa.Run(qsim, costs, penalty, tx, tz, 5).Result;
-                    var tmp = result.ToArray<bool>();
-                    var cost = Cost(segmentCosts, tmp);
-                    var sat = Satisfactory(tmp);
-                    Console.WriteLine($"result = {result}, cost = {cost}, satisfactory = {sat}");
-                    if (sat) {
-                        if (cost < bestCost - 1E-6) {
-                            // New best cost found - update
-                            bestCost = cost;
-                            Array.Copy(tmp, bestItinerary, 6);
-                            successNumber = 1;
-                        } else if (Math.Abs(cost - bestCost) < 1E-6) {
-                            successNumber++;
-                        }
-                    }
-                }
+                // for (int trial = 0; trial < 20; trial++)
+                // {
+                //     //var result = QAOA_santa.Run(qsim, costs, penalty, tx, tz, 5).Result;
+                //     var tmp = result.ToArray<bool>();
+                //     var cost = Cost(segmentCosts, tmp);
+                //     var sat = Satisfactory(tmp);
+                //     Console.WriteLine($"result = {result}, cost = {cost}, satisfactory = {sat}");
+                //     if (sat) {
+                //         if (cost < bestCost - 1E-6) {
+                //             // New best cost found - update
+                //             bestCost = cost;
+                //             Array.Copy(tmp, bestItinerary, 6);
+                //             successNumber = 1;
+                //         } else if (Math.Abs(cost - bestCost) < 1E-6) {
+                //             successNumber++;
+                //         }
+                //     }
+                // }
                 Console.WriteLine("Simulation is complete\n");
                 Console.WriteLine($"Best itinerary found: {bestItinerary}, cost = {bestCost}");
                 Console.WriteLine($"{successNumber * 100.0 / 20}% of runs found the best itinerary\n");
